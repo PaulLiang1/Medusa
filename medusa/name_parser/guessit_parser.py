@@ -98,10 +98,6 @@ def guessit(name, options=None, cached=True):
 
 def get_expected_titles(show_list):
     """Return expected titles to be used by guessit.
-
-    It iterates over user's show list and only returns a regex for titles that contains numbers
-    or dashes (since they can confuse guessit).
-
     :param show_list:
     :type show_list: list of medusa.tv.Series
     :return:
@@ -119,11 +115,6 @@ def get_expected_titles(show_list):
             if not match:
                 continue
 
-            if not any(char.isdigit() or char == '-' for char in match.group(1)):
-                continue
-
-            # At this point only add titles (without the year ex: 9-1-1 (2018),
-            # only use `9-1-1`. And only when it has a number or '-' in its title.
             expected_titles.append(exception)
 
     return expected_titles
